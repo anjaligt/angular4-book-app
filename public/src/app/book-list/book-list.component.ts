@@ -10,15 +10,14 @@ import { LocalStorageService } from 'ngx-webstorage';
 export class BookListComponent implements OnInit {
 	bookList: {};
 	books: {};
-	purchasedbook[]: [];
+	purchasedbook:any= [];
 	
 	constructor( private http: Http, private session:LocalStorageService ) {
   	}
   
   ngOnInit() {
-  	var data: {};
   	var config = { headers : {'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'}};
-  	this.http.get("http://localhost/my-book-app/server/index.php/api/users/getBooks",data,config).subscribe(result => {
+  	this.http.get("http://localhost/my-book-app/server/index.php/api/users/getBooks").subscribe(result => {
   		this.bookList = JSON.parse(result["_body"]);
   		this.books = this.bookList["Data"];
   		this.session.store('session_data', this.books);//storing data in local storage service
