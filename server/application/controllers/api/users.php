@@ -51,9 +51,8 @@ class Users extends REST_Controller {
         $Return['Data'] = array();
         $Return['ServiceName'] = 'api/user/getBooks';
         $this->load->model('user_model');
-        $postdata = file_get_contents("php://input");
-        $data = json_decode($postdata);
-        $Return['Data'] = $this->user_model->getBooks($data);
+        
+        $Return['Data'] = $this->user_model->getBooks();
         $this->response($Return);
     }
 
